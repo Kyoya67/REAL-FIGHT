@@ -93,17 +93,19 @@ export default function Home() {
             </button>
           )}
         </div>
-        <div className={styles.controls}>
-          <div className={styles.fullscreenButton} onClick={toggleFullscreen}>
-            <Image
-              src={`/frame.svg`}
-              alt={`Frame Icon`}
-              width={20}
-              height={20}
-            />
-            <span>全画面</span>
+        {!isFullscreen && (
+          <div className={styles.controls}>
+            <div className={styles.fullscreenButton} onClick={toggleFullscreen}>
+              <Image
+                src={`/frame.svg`}
+                alt={`Frame Icon`}
+                width={20}
+                height={20}
+              />
+              <span>全画面</span>
+            </div>
           </div>
-        </div>
+        )}
         <div className={styles.metadata}>
           <h1>{`【第${page}話】${pageList[page - 1].title}`}</h1>
           <p>{`${pageList[page - 1].day}`}</p>

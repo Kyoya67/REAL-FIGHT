@@ -42,6 +42,12 @@
     z-index: 1000;
 }
 
+@media(max-width: 499px) {
+    .fullscreenViewer {
+        height: 100%;
+    }
+}
+
 .mangaPage {
     position: relative;
     width: 100%;
