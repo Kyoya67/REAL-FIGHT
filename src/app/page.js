@@ -6,15 +6,22 @@ import { useSwipeable } from "react-swipeable";
 import styles from "../styles/home.module.css";
 
 export default function Home() {
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(2);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const commentListRef = useRef(null);
 
-  const titles = ["事故", "胎動", "鏖殺", "蠢動", "内訌", "出征"];
+  const pageList = [
+    { title: "事故", day: "2024年02月12日" },
+    { title: "胎動", day: "2024年02月11日" },
+    { title: "鏖殺", day: "2024年02月12日" },
+    { title: "蠢動", day: "2024年03月17日" },
+    { title: "内訌", day: "2024年04月15日" },
+    { title: "出征", day: "2024年05月1日" },
+  ];
 
-  const nextPage = () => setPage((prev) => Math.min(titles.length, prev + 1));
+  const nextPage = () => setPage((prev) => Math.min(pageList.length, prev + 1));
   const prevPage = () => setPage((prev) => Math.max(1, prev - 1));
 
   const toggleFullscreen = () => {
@@ -52,45 +59,55 @@ export default function Home() {
   });
 
   return (
-    <div
-      {...handlers}
-      className={`${styles.container} ${isFullscreen ? styles.fullscreen : ""}`}
-    >
+    <>
       <div
-        className={`${styles.mangaViewer} ${
-          isFullscreen ? styles.fullscreenViewer : ""
+        {...handlers}
+        className={`${styles.container} ${
+          isFullscreen ? styles.fullscreen : ""
         }`}
       >
-        <div onClick={nextPage} className={styles.navButton}>
-          {"<"}
+        <div
+          className={`${styles.mangaViewer} ${
+            isFullscreen ? styles.fullscreenViewer : ""
+          }`}
+        >
+          <div onClick={nextPage} className={styles.navButton}>
+            {"<"}
+          </div>
+          <div className={styles.mangaPage}>
+            <Image
+              src={`/${page}.jpg`}
+              alt={`Page ${page}`}
+              layout="fill"
+              objectFit="contain"
+              className={styles.mangaImage}
+              priority
+            />
+          </div>
+          <div onClick={prevPage} className={styles.navButton}>
+            {">"}
+          </div>
+          {isFullscreen && (
+            <button onClick={closeFullscreen} className={styles.closeButton}>
+              ✖
+            </button>
+          )}
         </div>
-        <div className={styles.mangaPage}>
-          <Image
-            src={`/${page}.jpg`}
-            alt={`Page ${page}`}
-            layout="fill"
-            objectFit="contain"
-            className={styles.mangaImage}
-          />
+        <div className={styles.controls}>
+          <div className={styles.fullscreenButton} onClick={toggleFullscreen}>
+            <Image
+              src={`/frame.svg`}
+              alt={`Frame Icon`}
+              width={20}
+              height={20}
+            />
+            <span>全画面</span>
+          </div>
         </div>
-        <div onClick={prevPage} className={styles.navButton}>
-          {">"}
+        <div className={styles.metadata}>
+          <h1>{`【第${page}話】${pageList[page - 1].title}`}</h1>
+          <p>{`${pageList[page - 1].day}`}</p>
         </div>
-        {isFullscreen && (
-          <button onClick={closeFullscreen} className={styles.closeButton}>
-            ✖
-          </button>
-        )}
-      </div>
-      <div className={styles.controls}>
-        <div className={styles.fullscreenButton} onClick={toggleFullscreen}>
-          <Image src={`/frame.svg`} alt={`Frame Icon`} width={20} height={20} />
-          <span>全画面</span>
-        </div>
-      </div>
-      <div className={styles.metadata}>
-        <h1>{`【第${page}話】${titles[page - 1]}`}</h1>
-        <p>2024年02月12日</p>
       </div>
       <div className={styles.comments}>
         <h2>コメント</h2>
@@ -112,6 +129,6 @@ export default function Home() {
           送信
         </button>
       </div>
-    </div>
+    </>
   );
 }

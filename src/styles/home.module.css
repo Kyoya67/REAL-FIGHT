@@ -1,20 +1,16 @@
 .container {
     padding: 0;
+    height: calc(600px + (200 * (100vw - 375px) / 125));
     min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* border: solid; */
 }
 
-@media (max-width: 499px) {
+@media(min-width: 500px) {
     .container {
-        height: 180vh;
-    }
-}
-
-@media (min-width: 500px) {
-    .container {
-        height: 120vh;
+        height: 800px;
     }
 }
 
@@ -22,10 +18,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     background-color: #333;
     position: relative;
-    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* これを追加 */
+}
+
+@media (max-width: 499px) {
+    .mangaViewer {
+        height: calc(100vh - 100px);
+        /* コントロールやメタデータの高さを考慮 */
+    }
 }
 
 .fullscreenViewer {
@@ -41,12 +46,17 @@
     position: relative;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .mangaImage {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .navButton {
