@@ -9,6 +9,20 @@ export const metadata = {
   icons: {
     icon: "/icon.png",
   },
+  openGraph: {
+    title: "REAL FIGHT",
+    description: "いざ、止まらん",
+    type: "website",
+    url: "https://real-fight-tau.vercel.app",
+    images: [
+      {
+        url: "/ogp.png",
+        width: 1200,
+        height: 630,
+        alt: "OGP Image",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
