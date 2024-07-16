@@ -23,6 +23,18 @@ export const metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    site: "@tyooooooya",
+    title: "REAL FIGHT",
+    description: "いざ、止まらん",
+    images: [
+      {
+        url: "/ogp.png",
+        alt: "OGP Image",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
