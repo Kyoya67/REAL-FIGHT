@@ -6,13 +6,13 @@
     justify-content: center;
 }
 
-@media (max-width: 599px) {
+@media (max-width: 499px) {
     .container {
-        height: 100vh;
+        height: 180vh;
     }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 500px) {
     .container {
         height: 120vh;
     }

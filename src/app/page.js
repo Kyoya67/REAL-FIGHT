@@ -45,8 +45,8 @@ export default function Home() {
   }, [comments]);
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => nextPage(),
-    onSwipedRight: () => prevPage(),
+    onSwipedLeft: () => prevPage(),
+    onSwipedRight: () => nextPage(),
     preventDefaultTouchmoveEvent: true,
     trackMouse: true,
   });
@@ -61,7 +61,7 @@ export default function Home() {
           isFullscreen ? styles.fullscreenViewer : ""
         }`}
       >
-        <div onClick={prevPage} className={styles.navButton}>
+        <div onClick={nextPage} className={styles.navButton}>
           {"<"}
         </div>
         <div className={styles.mangaPage}>
@@ -73,7 +73,7 @@ export default function Home() {
             className={styles.mangaImage}
           />
         </div>
-        <div onClick={nextPage} className={styles.navButton}>
+        <div onClick={prevPage} className={styles.navButton}>
           {">"}
         </div>
         {isFullscreen && (
