@@ -19,6 +19,7 @@ export default function Home() {
     { title: "蠢動", day: "2024年03月17日" },
     { title: "内訌", day: "2024年04月15日" },
     { title: "出征", day: "2024年05月1日" },
+    { title: "角逐", day: "2024年07月24日" },
   ];
 
   const nextPage = () => setPage((prev) => Math.min(pageList.length, prev + 1));
